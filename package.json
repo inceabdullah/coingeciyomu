@@ -4,7 +4,8 @@
   "description": "Coin Geçiyo mu? Topluluk Reposu",
   "main": "main.js",
   "dependencies": {
-    "axios": "^0.21.0"
+    "axios": "^0.21.0",
+    "dotenv": "^8.2.0"
   },
   "devDependencies": {},
   "scripts": {
