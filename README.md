@@ -12,7 +12,7 @@ Coin Geçiyo mu araştırır, geliştirir, eleştirir, iyileştirir
 
 **Twitter**: [@coingeciyomu](https://twitter.com/coingeciyomu)
 
-**Medium**: [medium.com/@coingeciyomu](https://medium.com/@coingeciyomu)
+**Medium**: [https://coingeciyomu.medium.com](https://coingeciyomu.medium.com)
 
 # Cüzdan
 
