@@ -1,7 +1,7 @@
 require('dotenv').config();
 const fs = require("fs");
 const axios = require("axios");
-const { GITHUB_TOKEN } = process.env;
+const { GITHUB_TOKEN, LINKEDIN_ID, LINKEDIN_SECRET } = process.env;
 const query="web3";
 axios.get("https://api.github.com/search/code?q="+query+"+in:file+filename:package.json",
 {
