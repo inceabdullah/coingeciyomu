@@ -3,7 +3,12 @@ const fs = require("fs");
 const axios = require("axios");
 const { GITHUB_TOKEN } = process.env;
 const query="web3";
-axios.get("https://api.github.com/search/code?q="+query+"+in:file+filename:package.json&access_token="+GITHUB_TOKEN)
+axios.get("https://api.github.com/search/code?q="+query+"+in:file+filename:package.json",
+{
+    headers:{
+        "Authorization": "Bearer " + GITHUB_TOKEN
+    }
+})
 .then(res=>{
     let total_count;
     const { data } = res;
