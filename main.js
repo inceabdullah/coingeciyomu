@@ -2,7 +2,7 @@ $(function () {
     var mediumPromise = new Promise(function (resolve) {
     var $content = $('#jsonContent');
     var data = {
-        rss: 'https://medium.com/feed/@sabesan96'
+        rss: 'https://medium.com/feed/@coingeciyomu'
     };
     $.get(' https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40coingeciyomu', data, function (response) {
         if (response.status == 'ok') {
@@ -37,7 +37,7 @@ $(function () {
 mediumPromise.then(function()
     {
         //Pagination
-        pageSize = 4;
+        pageSize = 10;
 
         var pageCount = $(".card").length / pageSize;
 
