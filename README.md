@@ -10,6 +10,10 @@ Coin Geçiyo mu araştırır, geliştirir, eleştirir, iyileştirir
 
 # Bağlatılar
 
+**Web Sitesi**: [coingeciyomu.com](https://coingeciyomu.com/)
+
+**Web Sitesi - Kaynak kodu**: [medium-front-end branch](https://github.com/inceabdullah/coingeciyomu/tree/medium-front-end)
+
 **Twitter**: [@coingeciyomu](https://twitter.com/coingeciyomu)
 
 **Medium**: [https://coingeciyomu.medium.com](https://coingeciyomu.medium.com)
