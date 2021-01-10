@@ -25,5 +25,7 @@ jobs:
 
     - name: start
       run: |
-        echo "Starting..."
+        echo "Creating .env file..."
+        touch .env
+        echo GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} >> .env
         npm start
