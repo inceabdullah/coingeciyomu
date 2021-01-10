@@ -18,7 +18,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - npm install
+    - name: install
+      run: |
+        npm install
 
 
-    - npm start
+    - name: start
+      run: |
+        echo "Starting..."
+        npm start
