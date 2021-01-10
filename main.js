@@ -29,7 +29,7 @@ const getLinkedIn = async () => {
     await Scraper.init();
     Scraper.setQueryOptions({query: "ethereum web3"})
     await Scraper.linkedInJobSearch();
-    await utils.waitSec(5);
+    await utils.waitSec(15);
     const count = parseInt((await Scraper.getJobCount()).replace(/\,|\+$/g, ""));
     counts.linkedIn = count;
     await Scraper.close();
