@@ -32,11 +32,13 @@ const getLinkedIn = async () => {
     await utils.waitSec(5);
     const count = parseInt((await Scraper.getJobCount()).replace(/\,|\+$/g, ""));
     counts.linkedIn = count;
+    await Scraper.close();
 }
 
 const getCounts = async () => {
     await getGithub();
-    await getLinkedIn();
+    await getLinkedIn()
+    .catch(err=>console.error({err}));
     return counts;
 }
 
