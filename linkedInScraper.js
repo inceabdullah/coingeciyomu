@@ -44,6 +44,7 @@ const Scraper = {
     }),
     getJobCount: () => new Promise(async (resolve, reject)=>{
         const resultJobCountElem = (await Scraper.page.$$(".results-context-header__job-count"))[0];
+        console.log({resultJobCountElem});
         const result = await (await resultJobCountElem.getProperty('textContent')).jsonValue();
         if (!result) return reject("There is no result");
         resolve(result);
