@@ -48,6 +48,20 @@ const Scraper = {
         if (!result) return reject("There is no result");
         resolve(result);
     }),
+    close: () => new Promise(async (resolve, reject)=>{
+        let result;
+        try {
+            result = Scraper.browser.process().kill('SIGINT');
+        } catch(err) {
+            reject(err);
+        }
+        // await Scraper.browser.close()
+        // .catch(err=>{
+        //     console.error({err});
+        //     reject(err);
+        // });
+        if (result) resolve(result);
+    }),
 }
 
 module.exports = Scraper;
