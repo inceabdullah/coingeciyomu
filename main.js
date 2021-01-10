@@ -36,7 +36,9 @@ const getLinkedIn = async () => {
 }
 
 const getCounts = async () => {
+    console.log("getting github");
     await getGithub();
+    console.log("getting linkedin");
     await getLinkedIn()
     .catch(err=>console.error({err}));
     return counts;
