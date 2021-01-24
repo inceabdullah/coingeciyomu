@@ -1,4 +1,4 @@
-FROM rastasheep/ubuntu-sshd
+FROM hacikoder/puppeteer-stable
 ADD . /apt
 WORKDIR /apt
 RUN npm install
