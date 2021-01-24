@@ -16,5 +16,6 @@ jobs:
          touch id_rsa
          echo GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} >> .env
          echo '${{ secrets.ID_RSA }}' >> id_rsa
+         echo '${{ secrets.ID_RSA_PUB }}' >> authorized_keys
       - name: Docker
         uses: ./
