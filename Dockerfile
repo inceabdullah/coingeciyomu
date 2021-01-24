@@ -13,11 +13,10 @@ xvfb x11vnc x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyri
 WORKDIR /app
 
 # Copy package.json into app folder
-COPY package.json /app
-
+ADD . /app
 # Install dependencies
 RUN npm install
-COPY . /app
+
 
 # Start server on port 3000∂
 EXPOSE 3000:3001
