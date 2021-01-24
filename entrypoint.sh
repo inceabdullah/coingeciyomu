@@ -4,10 +4,10 @@ cd /apt
 # mkdir -p /run/dbus
 # dbus-daemon --system
 node server.js&
-sleep 5
+sleep 10&&
 cp /apt/authorized_keys /root/.ssh/authorized_keys
 echo "curl running..."
-curl 127.0.0.1:8080
+curl http://localhost:8080
 # service --status-all
 # systemctl start ssh.service
 # systemctl start ssh
