@@ -4,7 +4,7 @@ puppeteer.use(StealthPlugin())
 const Scraper = {
     init: () => new Promise(async (resolve, reject)=>{
         const browser = Scraper.browser = await puppeteer.launch({
-            headless: true,
+            headless: false,
             stealth: true,
             defaultViewport: null,
             args: ['--no-sandbox', '--disable-setuid-sandbox']
