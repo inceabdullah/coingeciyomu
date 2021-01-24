@@ -9,9 +9,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Docker
+      - name: ENV clone
         run: |
          echo "Creating .env file..."
          touch .env
          echo GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} >> .env
+      - name: Docker
         uses: ./
