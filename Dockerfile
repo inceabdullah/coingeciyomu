@@ -1,26 +1,29 @@
-# A minimal Docker image with Node and Puppeteer
-#
-# Initially based upon:
-# https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker
+FROM ianwalter/pnpm:v1.3.0
 
-FROM node:12.18.3-buster-slim@sha256:dd6aa3ed10af4374b88f8a6624aeee7522772bb08e8dd5e917ff729d1d3c3a4f
-ENV PUPPETEER_EXECUTABLE_PATH="/usr/bin/google-chrome-stable"
+LABEL "com.github.actions.name"="Puppeteer Container"
+LABEL "com.github.actions.description"="A GitHub Action / Docker image for Puppeteer, the Headless Chrome Node API"
+LABEL "com.github.actions.icon"="globe"
+LABEL "com.github.actions.color"="green"
+
+LABEL "repository"="http://github.com/ianwalter/puppeteer-container"
+LABEL "homepage"="http://github.com/ianwalter/puppeteer-container"
+LABEL "maintainer"="Ian Walter <pub@ianwalter.dev>"
 
 RUN  apt-get update \
-     && apt-get install -y wget gnupg ca-certificates \
+     # See https://crbug.com/795759
+     && apt-get install -yq libgconf-2-4 \
+     # Install latest chrome dev package, which installs the necessary libs to
+     # make the bundled version of Chromium that Puppeteer installs work.
+     && apt-get install -y wget --no-install-recommends \
      && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
      && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
      && apt-get update \
-     # We install Chrome to get all the OS level dependencies, but Chrome itself
-     # is not actually used as it's packaged in the node puppeteer library.
-     # Alternatively, we could could include the entire dep list ourselves
-     # (https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md#chrome-headless-doesnt-launch-on-unix)
-     # but that seems too easy to get out of date.
-     && apt-get install -y google-chrome-stable \
-     && rm -rf /var/lib/apt/lists/* \
-     && wget --quiet https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh -O /usr/sbin/wait-for-it.sh \
-     && chmod +x /usr/sbin/wait-for-it.sh
+     && apt-get install -y google-chrome-stable --no-install-recommends \
+     && rm -rf /var/lib/apt/lists/*
 
+# When installing Puppeteer through npm, instruct it to not download Chromium.
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
+ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/google-chrome-stable
 
 ADD . /apt
 WORKDIR /apt
