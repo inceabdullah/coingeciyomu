@@ -6,7 +6,8 @@ const Scraper = {
         const browser = Scraper.browser = await puppeteer.launch({
             headless: true,
             stealth: true,
-            defaultViewport: null
+            defaultViewport: null,
+            args: ['--no-sandbox']
         })
         .catch(err=>{console.error({err});reject(err)});
         const page = Scraper.page = await browser.newPage()
