@@ -7,7 +7,7 @@ const Scraper = {
             headless: true,
             stealth: true,
             defaultViewport: null,
-            args: ['--no-sandbox']
+            args: ['--no-sandbox', '--disable-setuid-sandbox']
         })
         .catch(err=>{console.error({err});reject(err)});
         const page = Scraper.page = await browser.newPage()
