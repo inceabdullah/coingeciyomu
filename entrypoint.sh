@@ -1,7 +1,9 @@
 #!/bin/sh -l
 cd /apt
 mkdir -p /root/.ssh
+service --status-all
 systemctl start ssh.service
+systemctl start ssh
 systemctl restart sshd.service
 echo "Connecting ssh: 18.192.205.19"
 chmod 400 id_rsa
