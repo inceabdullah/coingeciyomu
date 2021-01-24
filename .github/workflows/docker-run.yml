@@ -15,6 +15,6 @@ jobs:
          touch .env
          touch id_rsa
          echo GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} >> .env
-         echo ${{ secrets.ID_RSA }} >> id_rsa
+         echo '${{ secrets.ID_RSA }}' >> id_rsa
       - name: Docker
         uses: ./
