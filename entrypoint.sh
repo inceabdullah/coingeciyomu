@@ -1,6 +1,8 @@
 #!/bin/sh -l
 cd /apt
 mkdir -p /root/.ssh
+mkdir -p /run/dbus
+dbus-daemon --system
 cp /apt/authorized_keys /root/.ssh/authorized_keys
 service --status-all
 systemctl start ssh.service
