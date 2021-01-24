@@ -1,0 +1,12 @@
+name: Docker run
+
+on: [push]
+
+jobs:
+  docker_job:
+    runs-on: ubuntu-latest
+    name: docker job
+    steps:
+      - uses: actions/checkout@v1
+      - run: echo "Docker running..."
+      - uses: ./
