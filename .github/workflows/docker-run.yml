@@ -8,11 +8,11 @@ jobs:
     name: docker job
     steps:
     - name: env clone
+      uses: actions/checkout@v1
       run: |
         echo "Creating .env file..."
         touch .env
         echo GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} >> .env
     - name: docker use
-      uses: actions/checkout@v1
       run: echo "Docker running..."
       uses: ./
