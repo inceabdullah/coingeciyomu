@@ -7,10 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     name: docker job
     steps:
-      uses: actions/checkout@v1
-      run: |
-        echo "Creating .env file..."
-        touch .env
-        echo "Docker running..."
-        echo GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} >> .env
-      uses: ./
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Docker
+        run: |
+         echo "Creating .env file..."
+         touch .env
+         echo GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} >> .env
+        uses: ./
