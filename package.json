@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/inceabdullah/coingeciyomu/issues"
   },
-  "homepage": "https://github.com/inceabdullah/coingeciyomu#readme"
+  "homepage": "https://github.com/inceabdullah/coingeciyomu#readme",
+  "config": {
+    "puppeteer_download_path": "./node_modules/puppeteer/.local-chromium"
+  }
 }
