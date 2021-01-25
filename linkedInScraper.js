@@ -1,13 +1,19 @@
 const puppeteer = require('puppeteer-extra')
+const Xvfb = require('xvfb');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 puppeteer.use(StealthPlugin())
 const Scraper = {
     init: () => new Promise(async (resolve, reject)=>{
+        var xvfb = new Xvfb({
+            silent: true,
+            xvfb_args: ["-screen", "0", '1280x720x24', "-ac"],
+        });
+        xvfb.start((err)=>{if (err) console.error(err)})
         const browser = Scraper.browser = await puppeteer.launch({
             headless: false,
             stealth: true,
             defaultViewport: null,
-            args: ['--no-sandbox', '--disable-setuid-sandbox']
+            args: ['--no-sandbox', '--start-fullscreen', '--display='+xvfb._display]
         })
         .catch(err=>{console.error({err});reject(err)});
         const page = Scraper.page = await browser.newPage()
@@ -53,6 +59,7 @@ const Scraper = {
         let result;
         try {
             result = Scraper.browser.process().kill('SIGINT');
+            xvfb.stop();
         } catch(err) {
             reject(err);
         }
