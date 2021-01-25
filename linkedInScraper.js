@@ -10,7 +10,7 @@ const Scraper = {
         });
         xvfb.start((err)=>{if (err) console.error(err)})
         const browser = Scraper.browser = await puppeteer.launch({
-            headless: false,
+            headless: true,
             stealth: true,
             defaultViewport: null,
             args: ['--no-sandbox', '--start-fullscreen', '--display='+xvfb._display]
