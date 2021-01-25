@@ -9,11 +9,9 @@ libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss
 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget \
 xvfb x11vnc x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic x11-apps
 
-# Cd into /app
-WORKDIR /app
 
 # Copy package.json into app folder
-ADD . /
+ADD . /app
 # Install dependencies
 RUN npm install
 
