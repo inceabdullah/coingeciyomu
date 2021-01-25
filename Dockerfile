@@ -32,4 +32,4 @@ ENV DISPLAY :99
 # ADD . /apt
 # WORKDIR /apt
 # RUN npm install
-ENTRYPOINT ["/apt/entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]
