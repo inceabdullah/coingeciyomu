@@ -26,10 +26,10 @@ ENV PORT=3001
 ENV DISPLAY :99
 
 # Start script on Xvfb
-CMD Xvfb :99 -screen 0 1024x768x16 & npm start
+#CMD xvfb-run -a --server-args"-screen 0 1280x800x24 -ac -nolisten tcp -dpi 96 +extension RANDR" command-that-runs-chrome & npm start
 
 # FROM hacikoder/puppeteer-stable
 # ADD . /apt
 # WORKDIR /apt
 # RUN npm install
-# ENTRYPOINT ["/apt/entrypoint.sh"]
+ENTRYPOINT ["/apt/entrypoint.sh"]
