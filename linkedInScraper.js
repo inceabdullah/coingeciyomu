@@ -1,6 +1,9 @@
+require('dotenv').config();
+const { utils } = require("./helpers/");
 const puppeteer = require('puppeteer-extra')
 const Xvfb = require('xvfb');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth')
+const { LINKEDIN_EMAIL, LINKEDIN_PASSWORD } = process.env;
 puppeteer.use(StealthPlugin())
 const Scraper = {
     init: () => new Promise(async (resolve, reject)=>{
@@ -10,7 +13,7 @@ const Scraper = {
         });
         xvfb.start((err)=>{if (err) console.error(err)})
         const browser = Scraper.browser = await puppeteer.launch({
-            headless: true,
+            headless: false,
             stealth: true,
             defaultViewport: null,
             args: ['--no-sandbox', '--start-fullscreen', '--display='+xvfb._display]
@@ -29,6 +32,17 @@ const Scraper = {
         .catch(err=>{console.error({err});reject(err)});
         resolve(page);
     }),
+    getLogin: function(){
+        await this.page.click("input#login-email");
+        await utils.waitSec(1);
+        await this.page.keyboard.type(LINKEDIN_EMAIL, {delay: 100});
+        await this.page.click("input#login-password");
+        await utils.waitSec(1);
+        await this.page.keyboard.type(LINKEDIN_PASSWORD, {delay: 100});
+        await utils.waitSec(1);
+        await this.page.click("button#login-submit");
+        resolve(this.page);
+    },
     setQueryOptions: (data={}) => {
         const { query, location } = data;
         if (query) Scraper.data.queryOptions.query = query;

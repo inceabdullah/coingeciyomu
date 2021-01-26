@@ -3,6 +3,7 @@ const { utils } = require("./helpers/");
 const fs = require("fs");
 const axios = require("axios");
 const Scraper = require("./linkedInScraper");
+const { waitSec } = require('./helpers/utils');
 const { GITHUB_TOKEN } = process.env;
 const counts = {
     github: 0,
@@ -27,6 +28,9 @@ const getGithub = async () => {
 
 const getLinkedIn = async () => {
     await Scraper.init();
+    await waitSec(5);
+    await Scraper.getLogin();
+    await waitSec(10);
     Scraper.setQueryOptions({query: "ethereum web3"})
     await Scraper.linkedInJobSearch();
     await utils.waitSec(5);
