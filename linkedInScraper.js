@@ -32,7 +32,7 @@ const Scraper = {
         .catch(err=>{console.error({err});reject(err)});
         resolve(page);
     }),
-    getLogin: function(){
+    getLogin: async function(){
         await this.page.click("input#login-email");
         await utils.waitSec(1);
         await this.page.keyboard.type(LINKEDIN_EMAIL, {delay: 100});
