@@ -29,6 +29,7 @@ const getGithub = async () => {
 const getLinkedIn = async () => {
     await Scraper.init();
     await waitSec(5);
+    Scraper.setQueryOptions({query: "ethereum web3"})
     await Scraper.linkedInJobSearch();
     await waitSec(5);
     await Scraper.getLogin().catch(err=>{
@@ -36,7 +37,6 @@ const getLinkedIn = async () => {
         console.log(err)
     });
     await waitSec(10);
-    Scraper.setQueryOptions({query: "ethereum web3"})
     await Scraper.linkedInJobSearch();
     await utils.waitSec(5);
     const count = parseInt((await Scraper.getJobCount()).replace(/\,|\+$/g, ""));
