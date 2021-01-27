@@ -33,6 +33,8 @@ const Scraper = {
         resolve(page);
     }),
     getLogin: async function(){
+        const data = await Scraper.page.evaluate(() => document.querySelector('*').outerHTML);
+        console.log({data});
         await this.page.click("input#login-email");
         await utils.waitSec(1);
         await this.page.keyboard.type(LINKEDIN_EMAIL, {delay: 100});
@@ -64,8 +66,6 @@ const Scraper = {
         resolve(page);
     }),
     getJobCount: () => new Promise(async (resolve, reject)=>{
-        const data = await Scraper.page.evaluate(() => document.querySelector('*').outerHTML);
-        console.log({data});
         const resultJobCountElem = (await Scraper.page.$$(".results-context-header__job-count"))[0];
         const result = await (await resultJobCountElem.getProperty('textContent')).jsonValue();
         if (!result) return reject("There is no result");
