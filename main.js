@@ -31,7 +31,10 @@ const getLinkedIn = async () => {
     await waitSec(5);
     await Scraper.linkedInJobSearch();
     await waitSec(5);
-    await Scraper.getLogin();
+    await Scraper.getLogin().catch(err=>{
+        console.log("Error in Scraper.getLogin()");
+        console.log(err)
+    });
     await waitSec(10);
     Scraper.setQueryOptions({query: "ethereum web3"})
     await Scraper.linkedInJobSearch();
