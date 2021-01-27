@@ -29,6 +29,8 @@ const getGithub = async () => {
 const getLinkedIn = async () => {
     await Scraper.init();
     await waitSec(5);
+    await Scraper.linkedInJobSearch();
+    await waitSec(5);
     await Scraper.getLogin();
     await waitSec(10);
     Scraper.setQueryOptions({query: "ethereum web3"})
