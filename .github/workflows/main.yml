@@ -3,6 +3,7 @@ name: Docker run
 on:
   schedule:
     - cron: "*/20 * * * *"
+  workflow_dispatch:
 jobs:
   docker_job:
     runs-on: ubuntu-latest
