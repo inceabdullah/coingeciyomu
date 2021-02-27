@@ -30,8 +30,8 @@ const Scraper = {
             args: ['--no-sandbox', '--start-fullscreen', '--display='+xvfb._display]
         })
         .catch(err=>{console.error({err});reject(err)});
-        //empty page
-        await browser.newPage().catch(()=>{});
+        // //empty page
+        // await browser.newPage().catch(()=>{});
         const page = Scraper.page = await browser.newPage()
         .catch(err=>{console.error({err});reject(err)});
         console.log("browser:", !!browser, "page:", !!page);
@@ -118,6 +118,7 @@ const Scraper = {
         return new Promise(async (resolve, _)=>{
         //Get cookies
         const cookies = (await getCookies().catch(()=>{}) || []);
+        console.log({cookies_len: cookies.length});
         await this.page.setCookie(...cookies);
         console.log("cookies are loaded.");
         resolve(true);
