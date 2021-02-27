@@ -95,7 +95,7 @@ const Scraper = {
             console.error({err});
         }) || "";
         console.log({data_len: data.length});
-        fs.writeFileSync("html.html", data);
+        // fs.writeFileSync("html.html", data);
         resolve(page);
     }),
     getJobCount: () => new Promise(async (resolve, reject)=>{
