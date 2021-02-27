@@ -87,6 +87,8 @@ const Scraper = {
         const url = `https://www.linkedin.com/jobs/search?keywords=${query}&location=${location}`
         const page = await Scraper.goto(url)
         .catch(err=>{console.error({err});reject(err)});
+        console.log("awaiting after goto");
+        await utils.waitSec(10);
         const data = await Scraper.page.evaluate(() => document.querySelector('*').outerHTML).catch(err=>{
             console.log("Error in Scraper.page.evaluate");
             console.error({err});
