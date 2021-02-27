@@ -1,0 +1,6 @@
+name: 'Docker'
+description: 'Docker making'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

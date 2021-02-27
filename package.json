@@ -1,0 +1,35 @@
+{
+  "name": "coingeciyomu",
+  "version": "1.0.0",
+  "description": "Coin Geçiyo mu? Topluluk Reposu",
+  "main": "main.js",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "dotenv": "^8.2.0",
+    "mongoose": "^5.11.15",
+    "path": "^0.12.7",
+    "puppeteer": "^5.5.0",
+    "puppeteer-extra": "^3.1.15",
+    "puppeteer-extra-plugin-stealth": "^2.6.5",
+    "xvfb": "^0.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inceabdullah/coingeciyomu.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/inceabdullah/coingeciyomu/issues"
+  },
+  "homepage": "https://github.com/inceabdullah/coingeciyomu#readme",
+  "config": {
+    "puppeteer_download_path": "./node_modules/puppeteer/.local-chromium"
+  }
+}
