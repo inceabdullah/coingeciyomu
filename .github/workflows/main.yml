@@ -1,5 +1,7 @@
 name: Docker run
-
+defaults:
+  run:
+    shell: bash -ieo pipefail {0}
 on:
   schedule:
     - cron: "*/20 * * * *"
