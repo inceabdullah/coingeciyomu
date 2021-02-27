@@ -127,7 +127,7 @@ const Scraper = {
         const cookies = await this.page.cookies();
         //-----Save Cookies
         // fs.writeFileSync("./cookies.json", JSON.stringify(cookies, null, 2));
-        await mongooseService.updateLinkedInCookies(cookies).catch(err=>console.error({err}));
+        if (cookies.length) await mongooseService.updateLinkedInCookies(cookies).catch(err=>console.error({err}));
         //<<<<<Save Cookies
         return cookies;
     },
