@@ -14,11 +14,12 @@ const getCookies = async () => {
 
     return cookies;
 }
+let xvfb;
 puppeteer.use(StealthPlugin())
 const Scraper = {
     init: function(){
         return new Promise(async (resolve, reject)=>{
-        var xvfb = new Xvfb({
+        xvfb = new Xvfb({
             silent: true,
             xvfb_args: ["-screen", "0", '1280x720x24', "-ac"],
         });
