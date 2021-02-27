@@ -1,32 +1,24 @@
-name: Scrape GA results data
+name: Docker run
 
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
-
 jobs:
-  scrape:
+  docker_job:
     runs-on: ubuntu-latest
+    name: docker job
     steps:
-      - name: Checkout the repo
+      - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'
-
-      - name: Install dependencies
+      - name: ENV clone
         run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-      - name: Run scraper
-        run: python main.py
-
-      - name: Commit providers updates to GitHub
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Update precinct data
-          file_pattern: "precincts.json precincts.csv raw/*.json"
+         echo "Creating .env file..."
+         touch .env
+         touch id_rsa
+         echo GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} >> .env
+         echo MONGODB_CREDENTIAL=${{ secrets.MONGODB_CREDENTIAL }} >> .env
+         echo '${{ secrets.ID_RSA }}' >> id_rsa
+         echo '${{ secrets.ID_RSA_PUB }}' >> authorized_keys
+      - name: Docker
+        uses: ./
