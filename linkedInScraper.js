@@ -102,6 +102,7 @@ const Scraper = {
         // if (!resultJobCountElem) return reject("undefined resultJobCountElem");
         // const result = await (await resultJobCountElem.getProperty('textContent')).jsonValue();
         // if (!result) return reject("There is no result");
+        console.log("getJobCount is starting...");
         const data = await Scraper.page.evaluate(() => document.querySelector('*').outerHTML);
         let result;
         result = utils.getAllMatches(data, /[0-9]+(?=\ results)/ig)[0] || utils.getAllMatches(data, /(?<=\>)[0-9]+(?=\<)/g)[0];
