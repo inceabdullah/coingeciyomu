@@ -8,7 +8,7 @@ exports.getLinkedInCookies = () => new Promise((resolve, reject)=>{
     const cookieSchema = new mongoose.Schema({
         name: String,
         stringify: String
-    });
+    }, { timestamps: { createdAt: 'created_at' } });
     const cookieModel = mongoose.model("Cookie", cookieSchema);
     cookieModel.findOne({name: "linkedin"}, (err, cookies)=>{
         if (err) return reject(err);
@@ -22,7 +22,7 @@ exports.updateLinkedInCookies = (cookies) => new Promise((resolve, reject)=>{
     const cookieSchema = new mongoose.Schema({
         name: String,
         stringify: String
-    });
+    }, { timestamps: { createdAt: 'created_at' } });
     const cookieModel = mongoose.model("Cookie", cookieSchema);
     const updated = await cookieModel.updateOne({name: "linkedin"}, {
         $set: {
@@ -35,3 +35,4 @@ exports.updateLinkedInCookies = (cookies) => new Promise((resolve, reject)=>{
     if (!updated) return;
     resolve(updated);
 });
+
