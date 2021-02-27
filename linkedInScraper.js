@@ -84,7 +84,11 @@ const Scraper = {
         const url = `https://www.linkedin.com/jobs/search?keywords=${query}&location=${location}`
         const page = await Scraper.goto(url)
         .catch(err=>{console.error({err});reject(err)});
-        const data = await Scraper.page.evaluate(() => document.querySelector('*').outerHTML);
+        const data = await Scraper.page.evaluate(() => document.querySelector('*').outerHTML).catch(err=>{
+            console.log("Error in Scraper.page.evaluate");
+            console.error({err});
+        }) || "";
+        console.log({data_len: data.length});
         fs.writeFileSync("html.html", data);
         resolve(page);
     }),
