@@ -2,7 +2,7 @@ name: Docker run
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: 0 0 * * *
 jobs:
   docker_job:
     runs-on: ubuntu-latest
