@@ -3,10 +3,10 @@ defaults:
   run:
     shell: bash -ieo pipefail {0}
 on:
-  push:
-  # schedule:
-  #   - cron: "*/20 * * * *"
-  # workflow_dispatch:
+  # push:
+  schedule:
+    - cron: "*/60 * * * *"
+  workflow_dispatch:
 jobs:
   docker_job:
     runs-on: ubuntu-latest
