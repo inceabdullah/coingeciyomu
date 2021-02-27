@@ -103,10 +103,14 @@ const Scraper = {
         // const result = await (await resultJobCountElem.getProperty('textContent')).jsonValue();
         // if (!result) return reject("There is no result");
         console.log("getJobCount is starting...");
-        const data = await Scraper.page.evaluate(() => document.querySelector('*').outerHTML);
+        const data = await Scraper.page.evaluate(() => document.querySelector('*').outerHTML).catch(err=>{
+            console.log("Error in Scraper.page.evaluate under the func getJobCount");
+            console.error({err});
+        }) || "";
+        console.log({data_len: data.length});
         let result;
         result = utils.getAllMatches(data, /[0-9]+(?=\ results)/ig)[0] || utils.getAllMatches(data, /(?<=\>)[0-9]+(?=\<)/g)[0];
-        console.log({result})
+        console.log({result});
         if (!result) return reject("undefined result");
         resolve(result);
     }),
