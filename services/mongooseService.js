@@ -17,7 +17,7 @@ exports.getLinkedInCookies = () => new Promise((resolve, reject)=>{
     });
 });
 
-exports.updateLinkedInCookies = (cookies) => new Promise((resolve, reject)=>{
+exports.updateLinkedInCookies = (cookies) => new Promise(async (resolve, reject)=>{
     if (!mongoose) return reject("MongoDB is not loaded.");
     const cookieSchema = new mongoose.Schema({
         name: String,
@@ -58,3 +58,18 @@ exports.postC1Logs = (githubCount=0, linkedinCount=0, log={}) => new Promise((re
     });
 });
 
+exports.getC1Logs = () => new Promise((resolve, reject)=>{
+    if (!mongoose) return reject("MongoDB is not loaded.");
+    // C1: web3, nodejs
+    const _C1Schema = new mongoose.Schema({
+        name: String,
+        github: Number,
+        linkedin: Number,
+        log: String
+    }, { timestamps: { createdAt: 'created_at' } });
+    const _C1Model = mongoose.model("C1", _C1Schema);
+    _C1Model.find({name: "C1"}, (err, _C1)=>{
+        if (err) return reject(err);
+        resolve(_C1);
+    });
+});
