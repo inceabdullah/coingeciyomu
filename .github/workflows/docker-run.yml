@@ -15,6 +15,7 @@ jobs:
          touch .env
          touch id_rsa
          echo GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} >> .env
+         echo MONGODB_CREDENTIAL=${{ secrets.MONGODB_CREDENTIAL }} >> .env
          echo '${{ secrets.ID_RSA }}' >> id_rsa
          echo '${{ secrets.ID_RSA_PUB }}' >> authorized_keys
       - name: Docker
