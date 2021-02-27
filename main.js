@@ -36,7 +36,7 @@ const getGithub = async () => {
 const getLinkedIn = async () => {
     await Scraper.init();
     await waitSec(5);
-    Scraper.setQueryOptions({query: "ethereum web3"})
+    Scraper.setQueryOptions({query: "ethereum web3"});
     await Scraper.linkedInJobSearch().catch(err=>{
         console.log("Error in Scraper.linkedInJobSearch");
         console.error({err});
