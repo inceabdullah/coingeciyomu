@@ -1,6 +1,6 @@
 const { mongoDB } = require("../loaders/");
-let {mongoose} = mongoDB;
-if (!mongoose) mongoDB.onReady().then(res=>mongoose=res)
+let mongoose;
+mongoDB.onReady().then(res=>mongoose=res)
 .catch(err=>console.error({err}));
 
 exports.getLinkedInCookies = () => new Promise((resolve, reject)=>{
