@@ -3,7 +3,7 @@ name: Docker run
 on:
   # push:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/6 * * * *"
   workflow_dispatch:
 jobs:
   docker_job:
