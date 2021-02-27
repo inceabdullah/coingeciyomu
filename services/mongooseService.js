@@ -1,11 +1,11 @@
 const { mongoDB } = require("../loaders/");
-let mongoose;
+let mongoose, cookieSchema, _C1Schema;
 mongoDB.onReady().then(res=>mongoose=res)
 .catch(err=>console.error({err}));
 
 exports.getLinkedInCookies = () => new Promise((resolve, reject)=>{
     if (!mongoose) return reject("MongoDB is not loaded.");
-    const cookieSchema = new mongoose.Schema({
+    cookieSchema = new mongoose.Schema({
         name: String,
         stringify: String
     }, { timestamps: { createdAt: 'created_at' } });
@@ -19,10 +19,6 @@ exports.getLinkedInCookies = () => new Promise((resolve, reject)=>{
 
 exports.updateLinkedInCookies = (cookies) => new Promise(async (resolve, reject)=>{
     if (!mongoose) return reject("MongoDB is not loaded.");
-    const cookieSchema = new mongoose.Schema({
-        name: String,
-        stringify: String
-    }, { timestamps: { createdAt: 'created_at' } });
     const cookieModel = mongoose.model("Cookie", cookieSchema);
     const updated = await cookieModel.updateOne({name: "linkedin"}, {
         $set: {
@@ -39,7 +35,7 @@ exports.updateLinkedInCookies = (cookies) => new Promise(async (resolve, reject)
 exports.postC1Logs = (githubCount=0, linkedinCount=0, log={}) => new Promise((resolve, reject)=>{
     if (!mongoose) return reject("MongoDB is not loaded.");
     // C1: web3, nodejs
-    const _C1Schema = new mongoose.Schema({
+    _C1Schema = new mongoose.Schema({
         name: String,
         github: Number,
         linkedin: Number,
@@ -61,12 +57,13 @@ exports.postC1Logs = (githubCount=0, linkedinCount=0, log={}) => new Promise((re
 exports.getC1Logs = () => new Promise((resolve, reject)=>{
     if (!mongoose) return reject("MongoDB is not loaded.");
     // C1: web3, nodejs
-    const _C1Schema = new mongoose.Schema({
+    if (!_C1Schema) _C1Schema = new mongoose.Schema({
         name: String,
         github: Number,
         linkedin: Number,
         log: String
     }, { timestamps: { createdAt: 'created_at' } });
+
     const _C1Model = mongoose.model("C1", _C1Schema);
     _C1Model.find({name: "C1"}, (err, _C1)=>{
         if (err) return reject(err);
