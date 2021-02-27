@@ -30,6 +30,8 @@ const Scraper = {
             args: ['--no-sandbox', '--start-fullscreen', '--display='+xvfb._display]
         })
         .catch(err=>{console.error({err});reject(err)});
+        //empty page
+        await browser.newPage().catch(()=>{});
         const page = Scraper.page = await browser.newPage()
         .catch(err=>{console.error({err});reject(err)});
         console.log("browser:", !!browser, "page:", !!page);
@@ -44,6 +46,7 @@ const Scraper = {
         if (browser && page) resolve(true);
     })},
     browser: null,
+    page0: null,
     page: null,
     goto: (url) => new Promise(async (resolve, reject)=>{
         if (url.search(/^https?:\/\//i)<0) url="http://"+url;
