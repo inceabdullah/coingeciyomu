@@ -61,20 +61,21 @@ const getCounts = async () => {
 }
 
 getCounts()
-.then(res=>{
+.then(async (res)=>{
     console.log({res});
     const {
         github: githubCount,
         linkedIn: linkedinCount
     } = res;
-    mongooseService.postC1Logs(githubCount, linkedinCount).then(res=>{
-        console.log({postC1Logs_res: res});
-    })
-    .catch(err=>{
+    const resp = await mongooseService.postC1Logs(githubCount, linkedinCount).catch(err=>{
         console.error({postC1Logs_err: err});
     });
+    console.log({postC1Logs_res: res});
 })
-.catch(err=>console.error({err}));
+.catch(err=>console.error({err}))
+.finally(()=>{
+    process.exit(0);
+});
 
 // const puppeteer = require('puppeteer')
 // const Xvfb = require('xvfb');
