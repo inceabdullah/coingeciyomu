@@ -2,8 +2,8 @@ name: Docker run
 
 on:
   # push:
-  # schedule:
-  #   - cron: "*/5 * * * *"
+  schedule:
+    - cron: "*/10 * * * *"
   workflow_dispatch:
 jobs:
   docker_job:
