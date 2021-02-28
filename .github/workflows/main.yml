@@ -1,9 +1,9 @@
-name: Docker run sub
+name: Docker run sub 4
 
 on:
   # push:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/60 * * * *"
   workflow_dispatch:
 jobs:
   docker_job:
